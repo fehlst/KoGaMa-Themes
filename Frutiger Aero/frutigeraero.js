@@ -5,7 +5,7 @@
 // @description  Frutiger Aero Theme for KoGaMa
 // @author       fehlst
 // @match        *://*.kogama.com/*
-// @icon         https://media.discordapp.net/attachments/1224467115889787022/1351565656289443850/original-2acb3f301d939ea80ca83a9b03080517-removebg-preview.png?ex=67dad71b&is=67d9859b&hm=7d3c7563bccfa65fae521ddc9ebee940a4ae6c354ba87032edb02608cae02c80&=&format=webp&quality=lossless
+// @icon         https://www.chip.de/ii/1/5/5/4/3/1/5/6/Bildschirmfoto_2012-07-16_um_17.26.16-fc3c4a99fc9f6821.png
 // @grant        none
 // ==/UserScript==
 
@@ -43,7 +43,7 @@
             text-shadow: var(--aero-text-shadow) !important;
         }
 
-        /* KoGaMa Logo ändern */
+        /* KoGaMa Logo */
         a.MuiTypography-root[title="KoGaMa"] img {
             content: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/01093dcf-3500-4866-b84d-fb3c90fa9cfc/dgi80co-34ffa867-fdbd-479b-8562-c8e89181792c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzAxMDkzZGNmLTM1MDAtNDg2Ni1iODRkLWZiM2M5MGZhOWNmY1wvZGdpODBjby0zNGZmYTg2Ny1mZGJkLTQ3OWItODU2Mi1jOGU4OTE4MTc5MmMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.Blk-4vlfZ2YLyxpYerG6ORDCP35lV0g0gnP4zXbDufc') !important;
             height: auto !important;
@@ -217,7 +217,7 @@
             box-shadow: var(--aero-glow) !important;
         }
 
-        /* Links mit verbesserter Lesbarkeit */
+        
         a {
             color: var(--aero-accent) !important;
             text-decoration: none !important;
@@ -251,14 +251,14 @@
             text-shadow: var(--aero-text-shadow) !important;
         }
 
-        /* Text in _28mON schwarz machen */
+        
         ._28mON, ._28mON * {
             color: var(--aero-text) !important;
             text-shadow: var(--aero-text-shadow) !important;
         }
     `;
 
-    // Style zum Dokument hinzufügen
+    
     const styleElement = document.createElement('style');
     styleElement.textContent = frutigerAeroStyle;
     document.head.appendChild(styleElement);
