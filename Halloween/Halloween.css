@@ -1,0 +1,171 @@
+// ==UserScript==
+// @name         KoGaMa Halloween Theme
+// @namespace    https://github.com/fehlst
+// @version      1.0
+// @description  CREEPY KOGAMA THEME 🎃
+// @author       fehlst
+// @match        https://www.kogama.com/*
+// @icon         https://i.postimg.cc/wj6YrC5x/1000038044-removebg-preview.png
+// @grant        GM.addStyle
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    const halloweenCSS = `
+        /* --- Fonts --- */
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --halloween-primary: #FF4500;
+            --halloween-secondary: #6B8E23;
+            --halloween-text: #cccccc;
+            --halloween-text-headings: #FF6347;
+            --halloween-border-color: #333333;
+        }
+
+        html, body {
+            background: url("https://i.postimg.cc/Gt15yDqH/Polish-20251010-194847847.jpg")
+                no-repeat center center fixed !important;
+            background-size: cover !important;
+            color: var(--halloween-text) !important;
+            font-family: 'Poppins', sans-serif !important;
+            animation: bgZoom 60s ease-in-out infinite alternate;
+            overflow-x: hidden !important;
+        }
+
+        @keyframes bgZoom {
+            0% { background-size: 100% auto; }
+            100% { background-size: 105% auto; }
+        }
+
+        /* --- Nebel-Ebenen --- */
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05), transparent 70%);
+            pointer-events: none;
+            mix-blend-mode: lighten;
+            opacity: 0.2;
+            z-index: -1;
+            animation: fogDrift 120s linear infinite;
+        }
+
+        body::after {
+            background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.07), transparent 80%);
+            opacity: 0.25;
+            animation-duration: 200s;
+            animation-direction: reverse;
+        }
+
+        @keyframes fogDrift {
+            0% { transform: translate(0,0) scale(1); }
+            50% { transform: translate(-10%, -5%) scale(1.05); }
+            100% { transform: translate(0,0) scale(1); }
+        }
+
+        /* --- Überschriften & Zitter-Animation --- */
+        h1, h2, h3, h4, .headline-1, .headline-2, .headline-3 {
+            font-family: 'Creepster', cursive !important;
+            color: var(--halloween-text-headings) !important;
+            text-shadow: 0 0 5px rgba(255, 69, 0, 0.7);
+            animation: text-shiver 2.5s infinite ease-in-out;
+        }
+
+        @keyframes text-shiver {
+            0%   { text-shadow: 0 0 5px rgba(255, 69, 0, 0.7),  1px  1px 1px rgba(0,255,255,0.4); }
+            25%  { text-shadow: 0 0 5px rgba(255, 69, 0, 0.7), -1px -1px 1px rgba(255,0,0,0.4); }
+            50%  { text-shadow: 0 0 5px rgba(255, 69, 0, 0.7),  1px -1px 1px rgba(0,255,255,0.4); }
+            75%  { text-shadow: 0 0 5px rgba(255, 69, 0, 0.7), -1px  1px 1px rgba(255,0,0,0.4); }
+            100% { text-shadow: 0 0 5px rgba(255, 69, 0, 0.7),  1px  1px 1px rgba(0,255,255,0.4); }
+        }
+
+        /* --- Links --- */
+        a {
+            color: var(--halloween-primary) !important;
+            transition: all 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: var(--halloween-secondary) !important;
+            text-shadow: 0 0 8px var(--halloween-secondary);
+        }
+
+        /* --- Header & Navigation --- */
+        #header-navigation, #header, #react-header {
+            background: rgba(0, 0, 0, 0.85) !important;
+            border-bottom: 2px solid var(--halloween-primary) !important;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.2) !important;
+        }
+
+        #header-navigation .nav-item.active a,
+        #header-navigation .nav-item:hover a {
+             color: var(--halloween-secondary) !important;
+             background: none !important;
+        }
+
+        /* --- Haupt-Container & Karten --- */
+        #content, .content, .container, main, section, .page-container,
+        .box, .card, .widget, .item-card, .profile-card, .modal-content {
+            background-color: rgba(0, 0, 0, 0.6) !important;
+            border: 1px solid var(--halloween-border-color) !important;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5) !important;
+        }
+
+        /* --- Buttons --- */
+        button, .btn, input[type="submit"], .button {
+            background-color: transparent !important;
+            color: var(--halloween-primary) !important;
+            border: 2px solid var(--halloween-primary) !important;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 5px rgba(255, 69, 0, 0.5) !important;
+        }
+
+        button:hover, .btn:hover, input[type="submit"]:hover, .button:hover {
+            background-color: var(--halloween-primary) !important;
+            color: black !important;
+            border-color: var(--halloween-secondary) !important;
+            box-shadow: 0 0 15px var(--halloween-primary) !important;
+            transform: translateY(-2px);
+        }
+
+        /* --- Eingaben --- */
+        input, textarea, select {
+            background-color: rgba(30, 30, 30, 0.7) !important;
+            color: var(--halloween-text) !important;
+            border: 1px solid var(--halloween-border-color) !important;
+        }
+
+        /* --- Bilder & Icons --- */
+        img, svg, .icon {
+            filter: brightness(0.8) sepia(20%) saturate(120%);
+        }
+
+        /* --- Modals --- */
+        .modal-header, .modal-footer {
+            background: rgba(0, 0, 0, 0.8) !important;
+            border-bottom: 1px solid var(--halloween-primary) !important;
+            border-top: 1px solid var(--halloween-primary) !important;
+        }
+
+        /* --- Werbung ausblenden --- */
+        #ads, .ad-banner, .advertisement, div[id*="google_ads"], .ad-container {
+            display: none !important;
+        }
+
+        /* --- Neues Logo --- */
+        a.MuiTypography-root[title="KoGaMa"] img {
+            content: url('https://i.postimg.cc/wj6YrC5x/1000038044-removebg-preview.png') !important;
+            width: auto !important;
+            height: 40px !important;
+        }
+    `;
+
+    GM.addStyle(halloweenCSS);
+})();
