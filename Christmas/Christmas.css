@@ -1,0 +1,91 @@
+// ==UserScript==
+// @name         KoGaMa Christmas Theme
+// @namespace    https://github.com/fehlst
+// @icon         https://i.postimg.cc/jST92tBh/fdfsfsfsfdsfsfsf.png
+// @version      1.0
+// @description  Adds a Christmas-themed look to KoGaMa
+// @author       fehlst
+// @match        https://www.kogama.com/*
+// @match        https://kogama.com/*
+// @grant        GM_addStyle
+// ==/UserScript==
+
+(function() {
+    "use strict";
+
+    GM_addStyle(`
+        @import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap');
+
+        body {
+            background: url('https://i.postimg.cc/PJ7QszY5/xmas.png') !important;
+            background-size: cover !important;
+            background-attachment: fixed !important;
+            font-family: 'Mountains of Christmas', cursive !important;
+        }
+
+        * {
+            font-family: 'Mountains of Christmas', cursive !important;
+        }
+    `);
+
+    const snowCSS = `
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: white;
+            font-size: 1em;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
+        }
+    `;
+    GM_addStyle(snowCSS);
+
+    function createSnowflakes(count) {
+        for (let i = 0; i < count; i++) {
+            const snow = document.createElement("div");
+            snow.className = "snowflake";
+            snow.textContent = "❄";
+            snow.style.left = Math.random() * 100 + "vw";
+            snow.style.animationDuration = 3 + Math.random() * 5 + "s";
+            snow.style.fontSize = 10 + Math.random() * 20 + "px";
+            document.body.appendChild(snow);
+        }
+    }
+
+    createSnowflakes(50);
+
+    GM_addStyle(`
+        .btn, button, .header, .footer, .menu-bar {
+            background-color: #b30000 !important;
+            border-color: #ffffff !important;
+            color: #fff !important;
+        }
+
+        a, .text, .label {
+            color: #ffffffff !important;
+        }
+
+        .card, .container, .panel {
+            background: rgba(255, 255, 255, 0.75) !important;
+            backdrop-filter: blur(4px);
+            border-radius: 16px !important;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+            font-family: 'Mountains of Christmas', cursive !important;
+        }
+    `);
+
+    GM_addStyle(`
+        a.MuiTypography-root[title="KoGaMa"] img {
+            content: url('https://i.postimg.cc/sxtyBq7H/fgfdfdfdfdfd.png') !important;
+            width: auto !important;
+            height: 40px !important;
+        }
+    `);
+
+})();
